@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_better_auth/core/api/models/common/change_email/change_email_body.dart';
-import 'package:flutter_better_auth/core/api/models/common/forgot_password/forgot_password_body.dart';
-import 'package:flutter_better_auth/core/api/models/common/reset_password/reset_password_body.dart';
-import 'package:flutter_better_auth/core/api/models/common/send_verification_email/verification_email_body.dart';
-import 'package:flutter_better_auth/core/api/models/common/verify_email/verify_email_response.dart';
-import 'package:flutter_better_auth/core/api/models/sign_up/sign_up_response/sign_up_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 import 'adapter.dart';
+import 'models/common/change_email/change_email_body.dart';
+import 'models/common/change_password/change_password_body.dart';
+import 'models/common/forgot_password/forgot_password_body.dart';
+import 'models/common/reset_password/reset_password_body.dart';
+import 'models/common/send_verification_email/verification_email_body.dart';
+import 'models/common/verify_email/verify_email_response.dart';
 import 'models/result/result.dart';
 import 'models/result/status_response.dart';
 import 'models/session/session_response.dart';
@@ -16,6 +16,9 @@ import 'models/sign_in/email/sign_in_email_response.dart';
 import 'models/sign_in/social/sign_in_social_body.dart';
 import 'models/sign_in/social/sign_in_social_response.dart';
 import 'models/sign_up/sign_up_body/sign_up_body.dart';
+import 'models/sign_up/sign_up_response/sign_up_response.dart';
+import 'models/user/delete_user/delete_user_body.dart';
+import 'models/user/update_user/update_user_body.dart';
 
 part 'better_auth_client.g.dart';
 
@@ -70,5 +73,20 @@ abstract class BetterAuthClient {
   @POST('/change-email')
   Future<Result<StatusResponse>> changeEmail({
     @Body() required ChangeEmailBody body,
+  });
+
+  @POST('/change-password')
+  Future<Result<SignUpResponse>> changePassword({
+    @Body() required ChangePasswordBody body,
+  });
+
+  @POST('/update-user')
+  Future<Result<StatusResponse>> updateUser({
+    @Body() UpdateUserBody body = const UpdateUserBody(),
+  });
+
+  @POST('/delete-user')
+  Future<Result<StatusResponse>> deleteUser({
+    @Body() DeleteUserBody body = const DeleteUserBody(),
   });
 }

@@ -381,6 +381,117 @@ class _BetterAuthClient implements BetterAuthClient {
     );
   }
 
+  Future<SignUpResponse> _changePassword({
+    required ChangePasswordBody body,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = body;
+    final _options = _setStreamType<Result<SignUpResponse>>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/change-password',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late SignUpResponse _value;
+    try {
+      _value = SignUpResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<Result<SignUpResponse>> changePassword({
+    required ChangePasswordBody body,
+  }) {
+    return BetterAuthCallAdapter<SignUpResponse>().adapt(
+      () => _changePassword(body: body),
+    );
+  }
+
+  Future<StatusResponse> _updateUser({
+    UpdateUserBody body = const UpdateUserBody(),
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = body;
+    final _options = _setStreamType<Result<StatusResponse>>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/update-user',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late StatusResponse _value;
+    try {
+      _value = StatusResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<Result<StatusResponse>> updateUser({
+    UpdateUserBody body = const UpdateUserBody(),
+  }) {
+    return BetterAuthCallAdapter<StatusResponse>().adapt(
+      () => _updateUser(body: body),
+    );
+  }
+
+  Future<StatusResponse> _deleteUser({
+    DeleteUserBody body = const DeleteUserBody(),
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = body;
+    final _options = _setStreamType<Result<StatusResponse>>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/delete-user',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late StatusResponse _value;
+    try {
+      _value = StatusResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<Result<StatusResponse>> deleteUser({
+    DeleteUserBody body = const DeleteUserBody(),
+  }) {
+    return BetterAuthCallAdapter<StatusResponse>().adapt(
+      () => _deleteUser(body: body),
+    );
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
