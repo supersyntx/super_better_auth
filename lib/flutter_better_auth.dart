@@ -1,66 +1,43 @@
-import 'dart:io';
+export 'core/api/default/sign_in/models/email/sign_in_email_body.dart';
+export 'core/api/default/sign_in/models/email/sign_in_email_response.dart';
+export 'core/api/default/sign_in/models/social/sign_in_social_body.dart';
+export 'core/api/default/sign_in/models/social/sign_in_social_response.dart';
+export 'core/api/default/sign_in/models/username/sign_in_username_body.dart';
+export 'core/api/default/sign_in/sign_in_better_auth.dart';
 
-import 'package:cookie_jar/cookie_jar.dart';
-import 'package:dio/dio.dart';
-import 'package:dio_cookie_manager/dio_cookie_manager.dart';
-import 'package:flutter_better_auth/core/api/better_auth_client.dart';
-import 'package:flutter_better_auth/core/storage/custom_persist_cookie_jar.dart';
-import 'package:flutter_better_auth/core/storage/hive_storage.dart';
-import 'package:flutter_better_auth/core/storage/storage.dart';
-import 'package:path_provider/path_provider.dart';
+// DEFAULT PLUGINS
+export 'core/api/default/sign_in/sign_in_extension.dart';
+export 'core/api/default/sign_up/models/sign_up_body/sign_up_body.dart';
+export 'core/api/default/sign_up/models/sign_up_response/sign_up_response.dart';
+export 'core/api/default/sign_up/sign_up_better_auth.dart';
+export 'core/api/default/sign_up/sign_up_extension.dart';
+export 'core/api/default/social/models/link/social_link_body.dart';
+export 'core/api/default/social/models/link/social_link_response.dart';
+export 'core/api/default/social/models/list_account/social_account.dart';
+export 'core/api/default/social/models/token/token_body.dart';
+export 'core/api/default/social/models/token/token_response.dart';
+export 'core/api/default/social/models/unlink/unlink_account_body.dart';
+export 'core/api/default/social/social_better_auth.dart';
+export 'core/api/default/social/social_extension.dart';
+export 'core/api/models/common/change_email/change_email_body.dart';
+export 'core/api/models/common/change_password/change_password_body.dart';
+export 'core/api/models/common/forgot_password/forgot_password_body.dart';
+export 'core/api/models/common/reset_password/reset_password_body.dart';
+export 'core/api/models/common/send_verification_email/verification_email_body.dart';
+export 'core/api/models/common/sign_out/sign_out_response.dart';
+export 'core/api/models/common/verify_email/verify_email_response.dart';
 
-import 'core/api/interceptor.dart';
+// API BODY AND RESPONSE
+export 'core/api/models/result/result.dart';
+export 'core/api/models/session/session_response.dart';
+export 'core/api/models/user/delete_user/delete_user_body.dart';
+export 'core/api/models/user/update_user/update_user_body.dart';
+export 'core/flutter_better_auth.dart';
+export 'core/models/account/account.dart';
+export 'core/models/session/session.dart';
 
-class FlutterBetterAuth {
-  static final FlutterBetterAuth _instance = FlutterBetterAuth._internal();
-  late final BetterAuthClient client;
-  static bool _initialized = false;
+// DEFAULT MODEL
 
-  static late String _baseUrl;
-  static late final Dio _dio;
-  static late final StorageInterface _storage;
-
-  FlutterBetterAuth._internal() {
-    client = BetterAuthClient(_dio, baseUrl: _baseUrl);
-  }
-
-  static Future<void> initialize({
-    required String baseUrl,
-    Dio? dio,
-    StorageInterface? storage,
-  }) async {
-    if (_initialized) return;
-    _baseUrl = baseUrl;
-
-    if (storage == null) {
-      await HiveStorage.init();
-      _storage = HiveStorage();
-    } else {
-      _storage = storage;
-    }
-    _dio =
-        dio ??
-        Dio(
-          BaseOptions(
-            headers: {HttpHeaders.contentTypeHeader: 'application/json'},
-            validateStatus: (status) => status != null && status <= 500,
-          ),
-        );
-    final appDir = await getApplicationDocumentsDirectory();
-    final cookieJar = CustomPersistCookieJar(
-      store: _storage,
-      storage: FileStorage("${appDir.path}/.cookies"),
-    );
-    _dio.interceptors.add(CookieManager(cookieJar));
-    // _dio.interceptors.add(RemoveNullsInterceptor());
-    _initialized = true;
-  }
-
-  static BetterAuthClient getClient() {
-    assert(
-      _initialized,
-      'FlutterBetterAuth not initialized. Call initialize() first.',
-    );
-    return _instance.client;
-  }
-}
+export 'core/models/user/user.dart';
+export 'core/models/verification/verification.dart';
+export 'plugins/phone/models/sign_in_phone_body.dart';

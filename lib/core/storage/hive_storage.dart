@@ -39,7 +39,6 @@ class HiveStorage implements StorageInterface {
   @override
   Future<List<Cookie>> loadCookies(String url) async {
     final data = _box.get(url);
-    logger.i(data.toString());
     if (data == null) return [];
 
     return (data as List).map<Cookie>((c) {

@@ -6,7 +6,7 @@ void main() {
   group("Test Flutter better Auth", () {
     test('Test singleton', () async {
       WidgetsFlutterBinding.ensureInitialized();
-      await FlutterBetterAuth.initialize(baseUrl: "http://10.2.2.0");
+      await FlutterBetterAuth.initialize(url: "http://10.2.2.0");
       final betterAuthClient = FlutterBetterAuth.getClient();
       final betterAuthClient2 = FlutterBetterAuth.getClient();
       expect(betterAuthClient, betterAuthClient2);

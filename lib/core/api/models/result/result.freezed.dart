@@ -112,10 +112,10 @@ as T,
 
 
 class Failure<T> implements Result<T> {
-  const Failure(this.message);
+  const Failure(this.error);
   
 
- final  String message;
+ final  BetterError error;
 
 /// Create a copy of Result
 /// with the given fields replaced by the non-null parameter values.
@@ -127,16 +127,16 @@ $FailureCopyWith<T, Failure<T>> get copyWith => _$FailureCopyWithImpl<T, Failure
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Failure<T>&&(identical(other.message, message) || other.message == message));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Failure<T>&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,message);
+int get hashCode => Object.hash(runtimeType,error);
 
 @override
 String toString() {
-  return 'Result<$T>.err(message: $message)';
+  return 'Result<$T>.err(error: $error)';
 }
 
 
@@ -147,11 +147,11 @@ abstract mixin class $FailureCopyWith<T,$Res> implements $ResultCopyWith<T, $Res
   factory $FailureCopyWith(Failure<T> value, $Res Function(Failure<T>) _then) = _$FailureCopyWithImpl;
 @useResult
 $Res call({
- String message
+ BetterError error
 });
 
 
-
+$BetterErrorCopyWith<$Res> get error;
 
 }
 /// @nodoc
@@ -164,14 +164,23 @@ class _$FailureCopyWithImpl<T,$Res>
 
 /// Create a copy of Result
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
   return _then(Failure<T>(
-null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,
+null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as BetterError,
   ));
 }
 
-
+/// Create a copy of Result
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$BetterErrorCopyWith<$Res> get error {
+  
+  return $BetterErrorCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
+  });
+}
 }
 
 // dart format on

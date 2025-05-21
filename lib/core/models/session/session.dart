@@ -15,6 +15,8 @@ abstract class Session with _$Session {
     String? ipAddress,
     String? userAgent,
     required String userId,
+    String? impersonatedBy,
+    String? activeOrganizationId,
   }) = _Session;
 
   factory Session.fromJson(Map<String, dynamic> json) =>

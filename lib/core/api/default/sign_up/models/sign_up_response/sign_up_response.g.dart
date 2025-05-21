@@ -10,7 +10,12 @@ _SignUpResponse _$SignUpResponseFromJson(Map<String, dynamic> json) =>
     _SignUpResponse(
       token: json['token'] as String?,
       user: User.fromJson(json['user'] as Map<String, dynamic>),
+      status: json['status'] as bool? ?? true,
     );
 
 Map<String, dynamic> _$SignUpResponseToJson(_SignUpResponse instance) =>
-    <String, dynamic>{'token': instance.token, 'user': instance.user.toJson()};
+    <String, dynamic>{
+      'token': instance.token,
+      'user': instance.user.toJson(),
+      'status': instance.status,
+    };

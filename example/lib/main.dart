@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_better_auth/core/api/models/result/result.dart';
-import 'package:flutter_better_auth/core/api/models/session/session_response.dart';
-import 'package:flutter_better_auth/core/api/models/sign_in/email/sign_in_email_body.dart';
-import 'package:flutter_better_auth/core/api/models/sign_in/email/sign_in_email_response.dart';
 import 'package:flutter_better_auth/flutter_better_auth.dart';
 import 'package:flutter_better_auth/presentation/better_auth_consumer.dart';
 import 'package:flutter_better_auth/presentation/better_auth_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await FlutterBetterAuth.initialize(baseUrl: 'http://10.0.2.2:3000/api/auth');
+  await FlutterBetterAuth.initialize(url: 'http://10.0.2.2:3000/api/auth');
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return BetterAuthProvider(
@@ -56,11 +51,11 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 FilledButton(
                   onPressed: () {
-                    client
-                        .signInWithEmail(
+                    client.signIn
+                        .email(
                           body: SignInEmailBody(
-                            email: "tsiresymila@gmail.com",
-                            password: "12345678",
+                            email: "test@mail.com",
+                            password: "123456788",
                           ),
                         )
                         .then((result) {
@@ -68,7 +63,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             debugPrint(result.data.toString());
                           } else {
                             debugPrint(
-                              (result as Failure<SignInEmailResponse>).message,
+                              (result as Failure<SignInEmailResponse>)
+                                  .error
+                                  .message,
                             );
                           }
                         });
@@ -83,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         debugPrint(result.data.toString());
                       } else {
                         debugPrint(
-                          (result as Failure<SessionResponse>).message,
+                          (result as Failure<SessionResponse>).error.message,
                         );
                       }
                     });
@@ -96,6 +93,24 @@ class _MyHomePageState extends State<MyHomePage> {
                     client.signOut();
                   },
                   child: Text("SignOut"),
+                ),
+                FilledButton(
+                  onPressed: () {
+                    client.signUp.email(body: SignUpBody(
+                      name: "test",
+                      email: "test@mail.com",
+                      password: "123456788"
+                    )).then((result) {
+                      if (result is Success<SignUpResponse>) {
+                        debugPrint(result.data.toString());
+                      } else {
+                        debugPrint(
+                          (result as Failure<SignUpResponse>).error.message,
+                        );
+                      }
+                    });
+                  },
+                  child: Text("SignUp"),
                 ),
               ],
             ),

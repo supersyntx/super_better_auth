@@ -1,7 +1,7 @@
 name: flutter_better_auth
-description: "A new Flutter project."
+description: "Better Auth Client for flutter"
 version: 0.0.1
-homepage:
+homepage: https://github.com/tsiresymila1/flutter_better_auth.git
 
 environment:
   sdk: ^3.7.0
