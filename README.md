@@ -1,8 +1,6 @@
-# BetterAuth for Dart/Flutter
+# Dart/Flutter BetterAuth
 
-A comprehensive authentication package for Dart and Flutter, supporting multiple authentication methods out of the box.
-
-
+[Better-Auth](https://www.better-auth.com) client for Dart and Flutter.
 
 ## Getting Started
 
@@ -16,7 +14,7 @@ Or manually add it to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-    flutter_better_auth: <latest_version>
+  flutter_better_auth: <latest_version>
 ```
 
 ## Features
@@ -27,15 +25,12 @@ dependencies:
 - ✅ Phone number authentication
 - ✅ Username authentication
 - ✅ Anonymous authentication
-- ⬜ Admin
+- ✅ Admin
 - ⬜ JWT
 - ⬜ Two-Factor Authentication
-- ⬜ PassKey
-- ⬜ Magic Link
 - ⬜ Email OTP
-- ⬜ One-Tap
 - ⬜ API Key
-- ⬜ Organization support
+- ⬜ Organization
 - ⬜ One-time-token
 
 ## Usage
@@ -45,13 +40,11 @@ Import the package in your `main.dart`:
 ```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_better_auth/flutter_better_auth.dart';
-import 'package:flutter_better_auth/presentation/better_auth_consumer.dart';
-import 'package:flutter_better_auth/presentation/better_auth_provider.dart';
 
 void main() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await FlutterBetterAuth.initialize(url: 'api_url');
-    runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  await FlutterBetterAuth.initialize(url: 'api_url');
+  runApp(const MyApp());
 }
 ```
 
@@ -59,36 +52,38 @@ Wrap your `MaterialApp` with `BetterAuthProvider`:
 
 ```dart
 class MyApp extends StatelessWidget {
-    const MyApp({super.key});
+  const MyApp({super.key});
 
-    @override
-    Widget build(BuildContext context) {
-        return BetterAuthProvider(
-            child: MaterialApp(
-                title: 'BetterAuth',
-                theme: ThemeData(
-                    colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-                ),
-                home: const MyHomePage(title: 'Better Auth'),
-            ),
-        );
-    }
+  @override
+  Widget build(BuildContext context) {
+    return BetterAuthProvider(
+      child: MaterialApp(
+        title: 'BetterAuth',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        ),
+        home: const MyHomePage(title: 'Better Auth'),
+      ),
+    );
+  }
 }
 ```
 
-Access the authentication client using `BetterAuthConsumer`:
+Access BetterAuth client using `BetterAuthConsumer`:
 
 ```dart
-BetterAuthConsumer(
-    builder: (context, client) {
-        return Widget();
-    },
+BetterAuthConsumer
+(
+builder: (context, client) {
+return Widget();
+},
 )
 ```
 
 Or directly via:
 
 ```dart
+
 final client = FlutterBetterAuth.getClient();
 ```
 
@@ -96,85 +91,88 @@ final client = FlutterBetterAuth.getClient();
 
 ```dart
 class _MyHomePageState extends State<MyHomePage> {
-    @override
-    Widget build(BuildContext context) {
-        return Scaffold(
-            appBar: AppBar(
-                backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-                title: Text(widget.title),
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme
+            .of(context)
+            .colorScheme
+            .inversePrimary,
+        title: Text(widget.title),
+      ),
+      body: BetterAuthConsumer(
+        builder: (context, client) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                FilledButton(
+                  onPressed: () {
+                    client.signIn.email(
+                      body: SignInEmailBody(
+                        email: "test@mail.com",
+                        password: "123456788",
+                      ),
+                    ).then((result) {
+                      if (result is Success<SignInEmailResponse>) {
+                        debugPrint(result.data.toString());
+                      } else {
+                        debugPrint(
+                          (result as Failure<SignInEmailResponse>).error.message,
+                        );
+                      }
+                    });
+                  },
+                  child: Text("Sign-in"),
+                ),
+                FilledButton(
+                  onPressed: () {
+                    client.getSession().then((result) {
+                      if (result is Success<SessionResponse>) {
+                        debugPrint(result.data.toString());
+                      } else {
+                        debugPrint(
+                          (result as Failure<SessionResponse>).error.message,
+                        );
+                      }
+                    });
+                  },
+                  child: Text("GetSession"),
+                ),
+                FilledButton(
+                  onPressed: () {
+                    client.signOut();
+                  },
+                  child: Text("SignOut"),
+                ),
+                FilledButton(
+                  onPressed: () {
+                    client.signUp.email(
+                      body: SignUpBody(
+                        name: "test",
+                        email: "test@mail.com",
+                        password: "123456788",
+                      ),
+                    ).then((result) {
+                      if (result is Success<SignUpResponse>) {
+                        debugPrint(result.data.toString());
+                      } else {
+                        debugPrint(
+                          (result as Failure<SignUpResponse>).error.message,
+                        );
+                      }
+                    });
+                  },
+                  child: Text("SignUp"),
+                ),
+              ],
             ),
-            body: BetterAuthConsumer(
-                builder: (context, client) {
-                    return Center(
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                                FilledButton(
-                                    onPressed: () {
-                                        client.signIn.email(
-                                            body: SignInEmailBody(
-                                                email: "test@mail.com",
-                                                password: "123456788",
-                                            ),
-                                        ).then((result) {
-                                            if (result is Success<SignInEmailResponse>) {
-                                                debugPrint(result.data.toString());
-                                            } else {
-                                                debugPrint(
-                                                    (result as Failure<SignInEmailResponse>).error.message,
-                                                );
-                                            }
-                                        });
-                                    },
-                                    child: Text("Sign-in"),
-                                ),
-                                FilledButton(
-                                    onPressed: () {
-                                        client.getSession().then((result) {
-                                            if (result is Success<SessionResponse>) {
-                                                debugPrint(result.data.toString());
-                                            } else {
-                                                debugPrint(
-                                                    (result as Failure<SessionResponse>).error.message,
-                                                );
-                                            }
-                                        });
-                                    },
-                                    child: Text("GetSession"),
-                                ),
-                                FilledButton(
-                                    onPressed: () {
-                                        client.signOut();
-                                    },
-                                    child: Text("SignOut"),
-                                ),
-                                FilledButton(
-                                    onPressed: () {
-                                        client.signUp.email(
-                                            body: SignUpBody(
-                                                name: "test",
-                                                email: "test@mail.com",
-                                                password: "123456788",
-                                            ),
-                                        ).then((result) {
-                                            if (result is Success<SignUpResponse>) {
-                                                debugPrint(result.data.toString());
-                                            } else {
-                                                debugPrint(
-                                                    (result as Failure<SignUpResponse>).error.message,
-                                                );
-                                            }
-                                        });
-                                    },
-                                    child: Text("SignUp"),
-                                ),
-                            ],
-                        ),
-                    );
-                },
-            ),
-        );
-    }
+          );
+        },
+      ),
+    );
+  }
 }
 ```
 

@@ -8,11 +8,15 @@
     - Email, phone number, and username authentication
     - Anonymous authentication
 
+### 0.0.2
+
+- Update readme
+- Add admin plugin
+
 ### Upcoming
 
-- Admin features
 - JWT support
 - Two-Factor Authentication
-- PassKey, Magic Link, Email OTP, One-Tap
+- PassKey, Email OTP, One-Tap
 - API Key and Organization support
 - One-time-token support
