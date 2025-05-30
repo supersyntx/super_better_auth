@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SignInSocialResponse {
 
- bool get redirect; String get token; String? get required;
+ bool get redirect; String get token; String get url; String? get required;
 /// Create a copy of SignInSocialResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +29,16 @@ $SignInSocialResponseCopyWith<SignInSocialResponse> get copyWith => _$SignInSoci
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignInSocialResponse&&(identical(other.redirect, redirect) || other.redirect == redirect)&&(identical(other.token, token) || other.token == token)&&(identical(other.required, required) || other.required == required));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignInSocialResponse&&(identical(other.redirect, redirect) || other.redirect == redirect)&&(identical(other.token, token) || other.token == token)&&(identical(other.url, url) || other.url == url)&&(identical(other.required, required) || other.required == required));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,redirect,token,required);
+int get hashCode => Object.hash(runtimeType,redirect,token,url,required);
 
 @override
 String toString() {
-  return 'SignInSocialResponse(redirect: $redirect, token: $token, required: $required)';
+  return 'SignInSocialResponse(redirect: $redirect, token: $token, url: $url, required: $required)';
 }
 
 
@@ -49,7 +49,7 @@ abstract mixin class $SignInSocialResponseCopyWith<$Res>  {
   factory $SignInSocialResponseCopyWith(SignInSocialResponse value, $Res Function(SignInSocialResponse) _then) = _$SignInSocialResponseCopyWithImpl;
 @useResult
 $Res call({
- bool redirect, String token, String? required
+ bool redirect, String token, String url, String? required
 });
 
 
@@ -66,10 +66,11 @@ class _$SignInSocialResponseCopyWithImpl<$Res>
 
 /// Create a copy of SignInSocialResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? redirect = null,Object? token = null,Object? required = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? redirect = null,Object? token = null,Object? url = null,Object? required = freezed,}) {
   return _then(_self.copyWith(
 redirect: null == redirect ? _self.redirect : redirect // ignore: cast_nullable_to_non_nullable
 as bool,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String,required: freezed == required ? _self.required : required // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -82,11 +83,12 @@ as String?,
 @JsonSerializable()
 
 class _SignInSocialResponse implements SignInSocialResponse {
-  const _SignInSocialResponse({this.redirect = false, this.token = "", this.required});
+  const _SignInSocialResponse({this.redirect = false, this.token = "", this.url = "", this.required});
   factory _SignInSocialResponse.fromJson(Map<String, dynamic> json) => _$SignInSocialResponseFromJson(json);
 
 @override@JsonKey() final  bool redirect;
 @override@JsonKey() final  String token;
+@override@JsonKey() final  String url;
 @override final  String? required;
 
 /// Create a copy of SignInSocialResponse
@@ -102,16 +104,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignInSocialResponse&&(identical(other.redirect, redirect) || other.redirect == redirect)&&(identical(other.token, token) || other.token == token)&&(identical(other.required, required) || other.required == required));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignInSocialResponse&&(identical(other.redirect, redirect) || other.redirect == redirect)&&(identical(other.token, token) || other.token == token)&&(identical(other.url, url) || other.url == url)&&(identical(other.required, required) || other.required == required));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,redirect,token,required);
+int get hashCode => Object.hash(runtimeType,redirect,token,url,required);
 
 @override
 String toString() {
-  return 'SignInSocialResponse(redirect: $redirect, token: $token, required: $required)';
+  return 'SignInSocialResponse(redirect: $redirect, token: $token, url: $url, required: $required)';
 }
 
 
@@ -122,7 +124,7 @@ abstract mixin class _$SignInSocialResponseCopyWith<$Res> implements $SignInSoci
   factory _$SignInSocialResponseCopyWith(_SignInSocialResponse value, $Res Function(_SignInSocialResponse) _then) = __$SignInSocialResponseCopyWithImpl;
 @override @useResult
 $Res call({
- bool redirect, String token, String? required
+ bool redirect, String token, String url, String? required
 });
 
 
@@ -139,10 +141,11 @@ class __$SignInSocialResponseCopyWithImpl<$Res>
 
 /// Create a copy of SignInSocialResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? redirect = null,Object? token = null,Object? required = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? redirect = null,Object? token = null,Object? url = null,Object? required = freezed,}) {
   return _then(_SignInSocialResponse(
 redirect: null == redirect ? _self.redirect : redirect // ignore: cast_nullable_to_non_nullable
 as bool,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String,required: freezed == required ? _self.required : required // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

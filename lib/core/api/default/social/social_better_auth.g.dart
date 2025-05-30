@@ -17,6 +17,46 @@ class _SocialBetterAuth implements SocialBetterAuth {
 
   final ParseErrorLogger? errorLogger;
 
+  Future<HttpResponse<SessionResponse>> _callback({
+    required String provider,
+    CallbackBody body = const CallbackBody(),
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = body;
+    final _options = _setStreamType<Result<SessionResponse>>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/callback/${provider}',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late SessionResponse _value;
+    try {
+      _value = SessionResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    final httpResponse = HttpResponse(_value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<Result<SessionResponse>> callback({
+    required String provider,
+    CallbackBody body = const CallbackBody(),
+  }) {
+    return BetterAuthCallAdapter<SessionResponse>().adapt(
+      () => _callback(provider: provider, body: body),
+    );
+  }
+
   Future<HttpResponse<SocialLinkResponse>> _link({
     required SocialLinkBody body,
   }) async {

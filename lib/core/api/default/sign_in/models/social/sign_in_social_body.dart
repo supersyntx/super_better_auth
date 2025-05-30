@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'social_id_token.dart';
+
 part 'sign_in_social_body.freezed.dart';
 part 'sign_in_social_body.g.dart';
 
@@ -10,8 +12,8 @@ abstract class SignInSocialBody with _$SignInSocialBody {
     String? newUserCallbackURL,
     String? errorCallbackURL,
     required String provider,
-    String? disableRedirect,
-    String? idToken,
+    bool? disableRedirect,
+    SocialIdToken? idToken,
     String? scopes,
     String? requestSignUp,
     String? loginHint,

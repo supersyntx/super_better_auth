@@ -12,7 +12,7 @@ import 'storage/memory_storage.dart';
 
 class FlutterBetterAuth {
   static final FlutterBetterAuth _instance = FlutterBetterAuth._internal();
-  late final BetterAuthClient client;
+  late final BetterAuthClient _client;
   static bool _initialized = false;
 
   static late String baseUrl;
@@ -20,7 +20,7 @@ class FlutterBetterAuth {
   static late final StorageInterface _storage;
 
   FlutterBetterAuth._internal() {
-    client = BetterAuthClient(dioClient, baseUrl: baseUrl);
+    _client = BetterAuthClient(dioClient, baseUrl: baseUrl);
   }
 
   static Future<void> initialize({
@@ -56,11 +56,12 @@ class FlutterBetterAuth {
     _initialized = true;
   }
 
-  static BetterAuthClient getClient() {
+  static BetterAuthClient get client {
     assert(
-      _initialized,
-      'FlutterBetterAuth not initialized. Call initialize() first.',
+    _initialized,
+    'FlutterBetterAuth not initialized. Call initialize() first.',
     );
-    return _instance.client;
+    return _instance._client;
   }
+
 }

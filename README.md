@@ -1,6 +1,8 @@
 # Dart/Flutter BetterAuth
 
-[Better-Auth](https://www.better-auth.com) client for Dart and Flutter.
+A Dart/Flutter client for interacting with the Better Auth authentication API, enabling seamless
+integration of secure sign-in, sign-up, and user session management features
+with [Better-Auth](https://www.better-auth.com).
 
 ## Getting Started
 
@@ -72,11 +74,10 @@ class MyApp extends StatelessWidget {
 Access BetterAuth client using `BetterAuthConsumer`:
 
 ```dart
-BetterAuthConsumer
-(
-builder: (context, client) {
-return Widget();
-},
+BetterAuthConsumer(
+  builder: (context, client) {
+    return Widget();
+  }
 )
 ```
 
@@ -84,7 +85,7 @@ Or directly via:
 
 ```dart
 
-final client = FlutterBetterAuth.getClient();
+final client = FlutterBetterAuth.client;
 ```
 
 ## Example

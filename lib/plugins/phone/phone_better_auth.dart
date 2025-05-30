@@ -16,7 +16,7 @@ part 'phone_better_auth.g.dart';
 
 @RestApi(callAdapter: BetterAuthCallAdapter)
 abstract class PhoneBetterAuth {
-  factory PhoneBetterAuth(Dio dio, {String? baseUrl}) = _PhoneBetterAuth;
+  factory PhoneBetterAuth(Dio dio, {String? baseUrl, ParseErrorLogger? errorLogger}) = _PhoneBetterAuth;
 
   @POST('/sign-in/phone-number')
   Future<Result<SessionResponse>> signIn({

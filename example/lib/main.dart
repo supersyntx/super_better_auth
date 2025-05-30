@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_better_auth/core/utils/logger.dart';
 import 'package:flutter_better_auth/flutter_better_auth.dart';
-import 'package:flutter_better_auth/presentation/better_auth_consumer.dart';
-import 'package:flutter_better_auth/presentation/better_auth_provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterBetterAuth.initialize(url: 'http://10.0.2.2:3000/api/auth');
+  await dotenv.load();
   runApp(const MyApp());
 }
 
@@ -95,20 +97,86 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text("SignOut"),
                 ),
                 FilledButton(
-                  onPressed: () {
-                    client.signUp.email(body: SignUpBody(
-                      name: "test",
-                      email: "test@mail.com",
-                      password: "123456788"
-                    )).then((result) {
-                      if (result is Success<SignUpResponse>) {
-                        debugPrint(result.data.toString());
-                      } else {
-                        debugPrint(
-                          (result as Failure<SignUpResponse>).error.message,
+                  onPressed: () async {
+                    final res = await client.signIn.social(body: SignInSocialBody(
+                        provider: 'github',
+                        disableRedirect: true,
+                    callbackURL: 'betterapp://oauth-callback'
+                    ));
+                    if(res is Success<SignInSocialResponse>){
+                      logger.i(res.data.url);
+                      final uri = Uri.parse(res.data.url);
+                      final newUri = uri.replace(queryParameters: {
+                        ...uri.queryParameters,
+                        "redirect_uri": 'betterapp://oauth-callback'
+                      });
+                      final result = await FlutterWebAuth2.authenticate(
+                        url:newUri.toString(),
+                        callbackUrlScheme: 'betterapp',
+                      );
+                      logger.i(result);
+                      final uriCode = Uri.parse(result);
+                      final code = uriCode.queryParameters['code'];
+                      final state = uriCode.queryParameters['state'];
+                      if (code != null) {
+                        final callbackRes = await client.social.callback(
+                          provider: 'github',
+                          body: CallbackBody(code: code, state:state),
                         );
+                        logger.i(callbackRes);
                       }
-                    });
+                    }
+                    return;
+
+                    // OAuth2Client ghClient = GitHubOAuth2Client(
+                    //   redirectUri: "betterapp://oauth-callback",
+                    //   customUriScheme: 'betterapp',
+                    // );
+                    // final res = await ghClient.getTokenWithAuthCodeFlow(
+                    //   clientId: dotenv.get('GITHUB_CLIENT_ID'),
+                    //   scopes: ['user', 'email'],
+                    //   clientSecret: dotenv.get('GITHUB_CLIENT_SECRET'),
+                    // );
+                    // logger.i(res.toMap());
+                    //
+                    // final resu = await client.signIn.social(
+                    //   body: SignInSocialBody(
+                    //     disableRedirect: true,
+                    //     provider: "github",
+                    //     idToken: SocialIdToken(
+                    //         token: res.toString(),
+                    //         accessToken: res.accessToken,
+                    //         refreshToken: res.refreshToken,
+                    //         expiresAt: res.expiresIn,
+                    //     ),
+                    //   ),
+                    // );
+                    // logger.i(resu);
+                    // logger.i(result);
+                    // logger.i(code);
+                  },
+                  child: Text("Github"),
+                ),
+
+                FilledButton(
+                  onPressed: () {
+                    client.signUp
+                        .email(
+                          body: SignUpBody(
+                            name: "test",
+                            email: "test@mail.com",
+                            password: "123456788",
+                          ),
+                        )
+                        .then((result) {
+                          if (result is Success<SignUpResponse>) {
+                            debugPrint(result.data.toString());
+                          } else {
+                            debugPrint(
+                              (result as Failure<SignUpResponse>).error.message,
+                            );
+                          }
+                        });
                   },
                   child: Text("SignUp"),
                 ),

@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SessionResponse {
 
- Session get session; User get user;
+ Session get session; User get user; String? get error; bool? get isRegister;
 /// Create a copy of SessionResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +29,16 @@ $SessionResponseCopyWith<SessionResponse> get copyWith => _$SessionResponseCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SessionResponse&&(identical(other.session, session) || other.session == session)&&(identical(other.user, user) || other.user == user));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SessionResponse&&(identical(other.session, session) || other.session == session)&&(identical(other.user, user) || other.user == user)&&(identical(other.error, error) || other.error == error)&&(identical(other.isRegister, isRegister) || other.isRegister == isRegister));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,session,user);
+int get hashCode => Object.hash(runtimeType,session,user,error,isRegister);
 
 @override
 String toString() {
-  return 'SessionResponse(session: $session, user: $user)';
+  return 'SessionResponse(session: $session, user: $user, error: $error, isRegister: $isRegister)';
 }
 
 
@@ -49,7 +49,7 @@ abstract mixin class $SessionResponseCopyWith<$Res>  {
   factory $SessionResponseCopyWith(SessionResponse value, $Res Function(SessionResponse) _then) = _$SessionResponseCopyWithImpl;
 @useResult
 $Res call({
- Session session, User user
+ Session session, User user, String? error, bool? isRegister
 });
 
 
@@ -66,11 +66,13 @@ class _$SessionResponseCopyWithImpl<$Res>
 
 /// Create a copy of SessionResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? session = null,Object? user = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? session = null,Object? user = null,Object? error = freezed,Object? isRegister = freezed,}) {
   return _then(_self.copyWith(
 session: null == session ? _self.session : session // ignore: cast_nullable_to_non_nullable
 as Session,user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as User,
+as User,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String?,isRegister: freezed == isRegister ? _self.isRegister : isRegister // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 /// Create a copy of SessionResponse
@@ -99,11 +101,13 @@ $UserCopyWith<$Res> get user {
 @JsonSerializable()
 
 class _SessionResponse implements SessionResponse {
-  const _SessionResponse({required this.session, required this.user});
+  const _SessionResponse({required this.session, required this.user, this.error, this.isRegister});
   factory _SessionResponse.fromJson(Map<String, dynamic> json) => _$SessionResponseFromJson(json);
 
 @override final  Session session;
 @override final  User user;
+@override final  String? error;
+@override final  bool? isRegister;
 
 /// Create a copy of SessionResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -118,16 +122,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SessionResponse&&(identical(other.session, session) || other.session == session)&&(identical(other.user, user) || other.user == user));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SessionResponse&&(identical(other.session, session) || other.session == session)&&(identical(other.user, user) || other.user == user)&&(identical(other.error, error) || other.error == error)&&(identical(other.isRegister, isRegister) || other.isRegister == isRegister));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,session,user);
+int get hashCode => Object.hash(runtimeType,session,user,error,isRegister);
 
 @override
 String toString() {
-  return 'SessionResponse(session: $session, user: $user)';
+  return 'SessionResponse(session: $session, user: $user, error: $error, isRegister: $isRegister)';
 }
 
 
@@ -138,7 +142,7 @@ abstract mixin class _$SessionResponseCopyWith<$Res> implements $SessionResponse
   factory _$SessionResponseCopyWith(_SessionResponse value, $Res Function(_SessionResponse) _then) = __$SessionResponseCopyWithImpl;
 @override @useResult
 $Res call({
- Session session, User user
+ Session session, User user, String? error, bool? isRegister
 });
 
 
@@ -155,11 +159,13 @@ class __$SessionResponseCopyWithImpl<$Res>
 
 /// Create a copy of SessionResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? session = null,Object? user = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? session = null,Object? user = null,Object? error = freezed,Object? isRegister = freezed,}) {
   return _then(_SessionResponse(
 session: null == session ? _self.session : session // ignore: cast_nullable_to_non_nullable
 as Session,user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as User,
+as User,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String?,isRegister: freezed == isRegister ? _self.isRegister : isRegister // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 

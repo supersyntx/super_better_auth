@@ -15,6 +15,7 @@ class BetterAuthCallAdapter<T>
       return Result<T>.ok(data);
     } on DioException catch (e, s) {
       final res = e.response;
+      logger.i(res?.headers);
       final status = res?.statusCode;
       final body = res?.data ?? {'message': e.message};
       logger.e("DioException", error: e, stackTrace: s);

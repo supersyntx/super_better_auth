@@ -11,6 +11,7 @@ _SignInSocialResponse _$SignInSocialResponseFromJson(
 ) => _SignInSocialResponse(
   redirect: json['redirect'] as bool? ?? false,
   token: json['token'] as String? ?? "",
+  url: json['url'] as String? ?? "",
   required: json['required'] as String?,
 );
 
@@ -19,5 +20,6 @@ Map<String, dynamic> _$SignInSocialResponseToJson(
 ) => <String, dynamic>{
   'redirect': instance.redirect,
   'token': instance.token,
+  'url': instance.url,
   'required': instance.required,
 };

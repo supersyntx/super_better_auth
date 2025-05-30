@@ -9,6 +9,7 @@ abstract class SignInSocialResponse with _$SignInSocialResponse {
   const factory SignInSocialResponse({
     @Default(false) bool redirect,
     @Default("") String token,
+    @Default("") String url,
     String? required,
   }) = _SignInSocialResponse;
 

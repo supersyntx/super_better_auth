@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -13,8 +12,8 @@ class HiveStorage implements StorageInterface {
     Hive.init(dir.path);
     await Hive.openBox('better_auth_cookies');
   }
-  final _box = Hive.box('better_auth_cookies');
 
+  final _box = Hive.box('better_auth_cookies');
 
   @override
   Future<void> saveCookies(String url, List<Cookie> cookies) async {

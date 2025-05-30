@@ -12,8 +12,11 @@ _SignInSocialBody _$SignInSocialBodyFromJson(Map<String, dynamic> json) =>
       newUserCallbackURL: json['newUserCallbackURL'] as String?,
       errorCallbackURL: json['errorCallbackURL'] as String?,
       provider: json['provider'] as String,
-      disableRedirect: json['disableRedirect'] as String?,
-      idToken: json['idToken'] as String?,
+      disableRedirect: json['disableRedirect'] as bool?,
+      idToken:
+          json['idToken'] == null
+              ? null
+              : SocialIdToken.fromJson(json['idToken'] as Map<String, dynamic>),
       scopes: json['scopes'] as String?,
       requestSignUp: json['requestSignUp'] as String?,
       loginHint: json['loginHint'] as String?,
@@ -26,7 +29,7 @@ Map<String, dynamic> _$SignInSocialBodyToJson(_SignInSocialBody instance) =>
       'errorCallbackURL': instance.errorCallbackURL,
       'provider': instance.provider,
       'disableRedirect': instance.disableRedirect,
-      'idToken': instance.idToken,
+      'idToken': instance.idToken?.toJson(),
       'scopes': instance.scopes,
       'requestSignUp': instance.requestSignUp,
       'loginHint': instance.loginHint,

@@ -13,6 +13,11 @@
 - Update readme
 - Add admin plugin
 
+### 0.0.2
+
+- Refactoring
+- Add github example
+
 ### Upcoming
 
 - JWT support

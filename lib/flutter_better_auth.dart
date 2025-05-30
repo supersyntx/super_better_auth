@@ -1,6 +1,8 @@
 export 'core/api/default/sign_in/models/email/sign_in_email_body.dart';
 export 'core/api/default/sign_in/models/email/sign_in_email_response.dart';
 export 'core/api/default/sign_in/models/social/sign_in_social_body.dart';
+export 'core/api/default/social/models/callback/callback_body.dart';
+export 'core/api/default/sign_in/models/social/social_id_token.dart';
 export 'core/api/default/sign_in/models/social/sign_in_social_response.dart';
 export 'core/api/default/sign_in/models/username/sign_in_username_body.dart';
 export 'core/api/default/sign_in/sign_in_better_auth.dart';

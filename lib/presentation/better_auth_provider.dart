@@ -16,7 +16,7 @@ class _BetterAuthProviderState extends State<BetterAuthProvider> {
   @override
   Widget build(BuildContext context) {
     return BetterAuthInherit(
-      client: FlutterBetterAuth.getClient(),
+      client: FlutterBetterAuth.client,
       child: Builder(
         builder: (context) {
           return widget.child;

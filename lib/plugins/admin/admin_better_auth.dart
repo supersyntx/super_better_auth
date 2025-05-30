@@ -17,7 +17,7 @@ part 'admin_better_auth.g.dart';
 
 @RestApi(callAdapter: BetterAuthCallAdapter)
 abstract class AdminBetterAuth {
-  factory AdminBetterAuth(Dio dio, {String? baseUrl}) = _AdminBetterAuth;
+  factory AdminBetterAuth(Dio dio, {String? baseUrl,ParseErrorLogger? errorLogger}) = _AdminBetterAuth;
 
   @POST('/admin/set-role')
   Future<Result<UserResponse>> setRole({

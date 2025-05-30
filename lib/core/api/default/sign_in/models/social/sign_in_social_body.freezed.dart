@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SignInSocialBody {
 
- String? get callbackURL; String? get newUserCallbackURL; String? get errorCallbackURL; String get provider; String? get disableRedirect; String? get idToken; String? get scopes; String? get requestSignUp; String? get loginHint;
+ String? get callbackURL; String? get newUserCallbackURL; String? get errorCallbackURL; String get provider; bool? get disableRedirect; SocialIdToken? get idToken; String? get scopes; String? get requestSignUp; String? get loginHint;
 /// Create a copy of SignInSocialBody
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -49,11 +49,11 @@ abstract mixin class $SignInSocialBodyCopyWith<$Res>  {
   factory $SignInSocialBodyCopyWith(SignInSocialBody value, $Res Function(SignInSocialBody) _then) = _$SignInSocialBodyCopyWithImpl;
 @useResult
 $Res call({
- String? callbackURL, String? newUserCallbackURL, String? errorCallbackURL, String provider, String? disableRedirect, String? idToken, String? scopes, String? requestSignUp, String? loginHint
+ String? callbackURL, String? newUserCallbackURL, String? errorCallbackURL, String provider, bool? disableRedirect, SocialIdToken? idToken, String? scopes, String? requestSignUp, String? loginHint
 });
 
 
-
+$SocialIdTokenCopyWith<$Res>? get idToken;
 
 }
 /// @nodoc
@@ -73,14 +73,26 @@ as String?,newUserCallbackURL: freezed == newUserCallbackURL ? _self.newUserCall
 as String?,errorCallbackURL: freezed == errorCallbackURL ? _self.errorCallbackURL : errorCallbackURL // ignore: cast_nullable_to_non_nullable
 as String?,provider: null == provider ? _self.provider : provider // ignore: cast_nullable_to_non_nullable
 as String,disableRedirect: freezed == disableRedirect ? _self.disableRedirect : disableRedirect // ignore: cast_nullable_to_non_nullable
-as String?,idToken: freezed == idToken ? _self.idToken : idToken // ignore: cast_nullable_to_non_nullable
-as String?,scopes: freezed == scopes ? _self.scopes : scopes // ignore: cast_nullable_to_non_nullable
+as bool?,idToken: freezed == idToken ? _self.idToken : idToken // ignore: cast_nullable_to_non_nullable
+as SocialIdToken?,scopes: freezed == scopes ? _self.scopes : scopes // ignore: cast_nullable_to_non_nullable
 as String?,requestSignUp: freezed == requestSignUp ? _self.requestSignUp : requestSignUp // ignore: cast_nullable_to_non_nullable
 as String?,loginHint: freezed == loginHint ? _self.loginHint : loginHint // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
+/// Create a copy of SignInSocialBody
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SocialIdTokenCopyWith<$Res>? get idToken {
+    if (_self.idToken == null) {
+    return null;
+  }
 
+  return $SocialIdTokenCopyWith<$Res>(_self.idToken!, (value) {
+    return _then(_self.copyWith(idToken: value));
+  });
+}
 }
 
 
@@ -95,8 +107,8 @@ class _SignInSocialBody implements SignInSocialBody {
 @override final  String? newUserCallbackURL;
 @override final  String? errorCallbackURL;
 @override final  String provider;
-@override final  String? disableRedirect;
-@override final  String? idToken;
+@override final  bool? disableRedirect;
+@override final  SocialIdToken? idToken;
 @override final  String? scopes;
 @override final  String? requestSignUp;
 @override final  String? loginHint;
@@ -134,11 +146,11 @@ abstract mixin class _$SignInSocialBodyCopyWith<$Res> implements $SignInSocialBo
   factory _$SignInSocialBodyCopyWith(_SignInSocialBody value, $Res Function(_SignInSocialBody) _then) = __$SignInSocialBodyCopyWithImpl;
 @override @useResult
 $Res call({
- String? callbackURL, String? newUserCallbackURL, String? errorCallbackURL, String provider, String? disableRedirect, String? idToken, String? scopes, String? requestSignUp, String? loginHint
+ String? callbackURL, String? newUserCallbackURL, String? errorCallbackURL, String provider, bool? disableRedirect, SocialIdToken? idToken, String? scopes, String? requestSignUp, String? loginHint
 });
 
 
-
+@override $SocialIdTokenCopyWith<$Res>? get idToken;
 
 }
 /// @nodoc
@@ -158,15 +170,27 @@ as String?,newUserCallbackURL: freezed == newUserCallbackURL ? _self.newUserCall
 as String?,errorCallbackURL: freezed == errorCallbackURL ? _self.errorCallbackURL : errorCallbackURL // ignore: cast_nullable_to_non_nullable
 as String?,provider: null == provider ? _self.provider : provider // ignore: cast_nullable_to_non_nullable
 as String,disableRedirect: freezed == disableRedirect ? _self.disableRedirect : disableRedirect // ignore: cast_nullable_to_non_nullable
-as String?,idToken: freezed == idToken ? _self.idToken : idToken // ignore: cast_nullable_to_non_nullable
-as String?,scopes: freezed == scopes ? _self.scopes : scopes // ignore: cast_nullable_to_non_nullable
+as bool?,idToken: freezed == idToken ? _self.idToken : idToken // ignore: cast_nullable_to_non_nullable
+as SocialIdToken?,scopes: freezed == scopes ? _self.scopes : scopes // ignore: cast_nullable_to_non_nullable
 as String?,requestSignUp: freezed == requestSignUp ? _self.requestSignUp : requestSignUp // ignore: cast_nullable_to_non_nullable
 as String?,loginHint: freezed == loginHint ? _self.loginHint : loginHint // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
 
+/// Create a copy of SignInSocialBody
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SocialIdTokenCopyWith<$Res>? get idToken {
+    if (_self.idToken == null) {
+    return null;
+  }
 
+  return $SocialIdTokenCopyWith<$Res>(_self.idToken!, (value) {
+    return _then(_self.copyWith(idToken: value));
+  });
+}
 }
 
 // dart format on

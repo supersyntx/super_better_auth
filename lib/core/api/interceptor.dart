@@ -12,13 +12,19 @@ class RemoveNullsInterceptor extends Interceptor {
         options.data = _removeNullsFromMap(data);
       }
     }
-
     super.onRequest(options, handler);
   }
 
   Map<String, dynamic> _removeNullsFromMap(Map<String, dynamic> map) {
     return Map.fromEntries(
-      map.entries.where((entry) => entry.value != null),
+      map.entries.where((entry){
+        return entry.value != null;
+      }).map((e){
+        if(e.value is Map){
+          return MapEntry(e.key, _removeNullsFromMap(e.value));
+        }
+        return e;
+      }),
     );
   }
 
