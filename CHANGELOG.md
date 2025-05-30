@@ -13,7 +13,7 @@
 - Update readme
 - Add admin plugin
 
-### 0.0.2
+### 0.0.3
 
 - Refactoring
 - Add github example
