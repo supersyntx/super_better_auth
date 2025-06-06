@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$BetterError {
 
- String get code; String get message;
+ String get code; String get message; String? get stack;
 /// Create a copy of BetterError
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +29,16 @@ $BetterErrorCopyWith<BetterError> get copyWith => _$BetterErrorCopyWithImpl<Bett
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is BetterError&&(identical(other.code, code) || other.code == code)&&(identical(other.message, message) || other.message == message));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BetterError&&(identical(other.code, code) || other.code == code)&&(identical(other.message, message) || other.message == message)&&(identical(other.stack, stack) || other.stack == stack));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,code,message);
+int get hashCode => Object.hash(runtimeType,code,message,stack);
 
 @override
 String toString() {
-  return 'BetterError(code: $code, message: $message)';
+  return 'BetterError(code: $code, message: $message, stack: $stack)';
 }
 
 
@@ -49,7 +49,7 @@ abstract mixin class $BetterErrorCopyWith<$Res>  {
   factory $BetterErrorCopyWith(BetterError value, $Res Function(BetterError) _then) = _$BetterErrorCopyWithImpl;
 @useResult
 $Res call({
- String code, String message
+ String code, String message, String? stack
 });
 
 
@@ -66,11 +66,12 @@ class _$BetterErrorCopyWithImpl<$Res>
 
 /// Create a copy of BetterError
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? code = null,Object? message = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? code = null,Object? message = null,Object? stack = freezed,}) {
   return _then(_self.copyWith(
 code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
 as String,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,
+as String,stack: freezed == stack ? _self.stack : stack // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -81,11 +82,12 @@ as String,
 @JsonSerializable()
 
 class _BetterError implements BetterError {
-  const _BetterError({this.code = "ERROR", required this.message});
+  const _BetterError({this.code = "ERROR", required this.message, required this.stack});
   factory _BetterError.fromJson(Map<String, dynamic> json) => _$BetterErrorFromJson(json);
 
 @override@JsonKey() final  String code;
 @override final  String message;
+@override final  String? stack;
 
 /// Create a copy of BetterError
 /// with the given fields replaced by the non-null parameter values.
@@ -100,16 +102,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BetterError&&(identical(other.code, code) || other.code == code)&&(identical(other.message, message) || other.message == message));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BetterError&&(identical(other.code, code) || other.code == code)&&(identical(other.message, message) || other.message == message)&&(identical(other.stack, stack) || other.stack == stack));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,code,message);
+int get hashCode => Object.hash(runtimeType,code,message,stack);
 
 @override
 String toString() {
-  return 'BetterError(code: $code, message: $message)';
+  return 'BetterError(code: $code, message: $message, stack: $stack)';
 }
 
 
@@ -120,7 +122,7 @@ abstract mixin class _$BetterErrorCopyWith<$Res> implements $BetterErrorCopyWith
   factory _$BetterErrorCopyWith(_BetterError value, $Res Function(_BetterError) _then) = __$BetterErrorCopyWithImpl;
 @override @useResult
 $Res call({
- String code, String message
+ String code, String message, String? stack
 });
 
 
@@ -137,11 +139,12 @@ class __$BetterErrorCopyWithImpl<$Res>
 
 /// Create a copy of BetterError
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? code = null,Object? message = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? code = null,Object? message = null,Object? stack = freezed,}) {
   return _then(_BetterError(
 code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
 as String,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,
+as String,stack: freezed == stack ? _self.stack : stack // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

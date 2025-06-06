@@ -12,7 +12,7 @@ abstract class CreateUserBody with _$CreateUserBody {
     String? role,
     String? data,
   }) = _CreateUserBody;
-  
+
   factory CreateUserBody.fromJson(Map<String, dynamic> json) =>
       _$CreateUserBodyFromJson(json);
 }

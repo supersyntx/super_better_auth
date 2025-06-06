@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'sign_up_body.freezed.dart';
 part 'sign_up_body.g.dart';
 
-
 @freezed
 abstract class SignUpBody with _$SignUpBody {
   const factory SignUpBody({
@@ -11,7 +10,7 @@ abstract class SignUpBody with _$SignUpBody {
     required String email,
     required String password,
     String? callbackURL,
-}) = _SignUpBody;
+  }) = _SignUpBody;
 
   factory SignUpBody.fromJson(Map<String, dynamic> json) =>
       _$SignUpBodyFromJson(json);

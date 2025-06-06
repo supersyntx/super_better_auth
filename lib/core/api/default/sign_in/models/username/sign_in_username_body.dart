@@ -9,7 +9,7 @@ abstract class SignInUsernameBody with _$SignInUsernameBody {
     required String username,
     required String password,
     String? rememberMe,
-}) = _SignInUsernameBody;
+  }) = _SignInUsernameBody;
 
   factory SignInUsernameBody.fromJson(Map<String, dynamic> json) =>
       _$SignInUsernameBodyFromJson(json);

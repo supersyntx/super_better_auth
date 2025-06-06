@@ -1,11 +1,10 @@
 import 'package:cookie_jar/cookie_jar.dart';
 
 class MemoryStorage implements Storage {
-  Map<String,dynamic> data = {};
+  Map<String, dynamic> data = {};
   @override
   Future<void> delete(String key) async {
-    data.removeWhere((k,v) => k == key);
-
+    data.removeWhere((k, v) => k == key);
   }
 
   @override
@@ -14,17 +13,15 @@ class MemoryStorage implements Storage {
   }
 
   @override
-  Future<void> init(bool persistSession, bool ignoreExpires) async {
-
-  }
+  Future<void> init(bool persistSession, bool ignoreExpires) async {}
 
   @override
   Future<String?> read(String key) async {
-     return data['key'];
+    return data['key'];
   }
 
   @override
-  Future<void> write(String key, String value) async{
+  Future<void> write(String key, String value) async {
     data['key'] = value;
   }
 }

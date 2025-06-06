@@ -18,10 +18,15 @@
 - Refactoring
 - Add github example
 
+### 0.0.4
+
+- Add Email OTP,
+- Add plugin example in readme
+
 ### Upcoming
 
 - JWT support
 - Two-Factor Authentication
-- PassKey, Email OTP, One-Tap
+- PassKey, One-Tap
 - API Key and Organization support
 - One-time-token support

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+
 class RemoveNullsInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
@@ -17,14 +18,16 @@ class RemoveNullsInterceptor extends Interceptor {
 
   Map<String, dynamic> _removeNullsFromMap(Map<String, dynamic> map) {
     return Map.fromEntries(
-      map.entries.where((entry){
-        return entry.value != null;
-      }).map((e){
-        if(e.value is Map){
-          return MapEntry(e.key, _removeNullsFromMap(e.value));
-        }
-        return e;
-      }),
+      map.entries
+          .where((entry) {
+            return entry.value != null;
+          })
+          .map((e) {
+            if (e.value is Map) {
+              return MapEntry(e.key, _removeNullsFromMap(e.value));
+            }
+            return e;
+          }),
     );
   }
 
@@ -37,5 +40,3 @@ class RemoveNullsInterceptor extends Interceptor {
     }
   }
 }
-
-

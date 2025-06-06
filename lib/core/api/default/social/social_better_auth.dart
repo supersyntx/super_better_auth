@@ -17,12 +17,16 @@ part 'social_better_auth.g.dart';
 
 @RestApi(callAdapter: BetterAuthCallAdapter)
 abstract class SocialBetterAuth {
-  factory SocialBetterAuth(Dio dio, {String? baseUrl, ParseErrorLogger? errorLogger}) = _SocialBetterAuth;
+  factory SocialBetterAuth(
+    Dio dio, {
+    String? baseUrl,
+    ParseErrorLogger? errorLogger,
+  }) = _SocialBetterAuth;
 
   @POST('/callback/{id}')
-  Future<Result<SessionResponse >> callback({
+  Future<Result<SessionResponse>> callback({
     @Path('id') required String provider,
-    @Body(nullToAbsent: true)  CallbackBody body = const CallbackBody(),
+    @Body(nullToAbsent: true) CallbackBody body = const CallbackBody(),
   });
 
   @POST('/link-social')

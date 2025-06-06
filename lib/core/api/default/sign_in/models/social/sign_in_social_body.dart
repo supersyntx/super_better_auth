@@ -17,7 +17,7 @@ abstract class SignInSocialBody with _$SignInSocialBody {
     String? scopes,
     String? requestSignUp,
     String? loginHint,
-}) = _SignInSocialBody;
+  }) = _SignInSocialBody;
 
   factory SignInSocialBody.fromJson(Map<String, dynamic> json) =>
       _$SignInSocialBodyFromJson(json);

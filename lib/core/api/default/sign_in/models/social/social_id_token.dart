@@ -11,7 +11,7 @@ abstract class SocialIdToken with _$SocialIdToken {
     String? accessToken,
     String? refreshToken,
     int? expiresAt,
-}) = _SocialIdToken;
+  }) = _SocialIdToken;
 
   factory SocialIdToken.fromJson(Map<String, dynamic> json) =>
       _$SocialIdTokenFromJson(json);

@@ -28,9 +28,9 @@ dependencies:
 - ✅ Username authentication
 - ✅ Anonymous authentication
 - ✅ Admin
+- ✅ Email OTP
 - ⬜ JWT
 - ⬜ Two-Factor Authentication
-- ⬜ Email OTP
 - ⬜ API Key
 - ⬜ Organization
 - ⬜ One-time-token
@@ -74,10 +74,11 @@ class MyApp extends StatelessWidget {
 Access BetterAuth client using `BetterAuthConsumer`:
 
 ```dart
-BetterAuthConsumer(
-  builder: (context, client) {
-    return Widget();
-  }
+BetterAuthConsumer
+(
+builder: (context, client) {
+return Widget();
+}
 )
 ```
 
@@ -88,7 +89,17 @@ Or directly via:
 final client = FlutterBetterAuth.client;
 ```
 
-## Example
+## Using plugins
+
+To use available plugin, you can import it from
+
+```dart
+import 'package:flutter_better_auth/plugins/admin/admin_plugin.dart';
+import 'package:flutter_better_auth/plugins/phone/phone_plugin.dart';
+import 'package:flutter_better_auth/plugins/email_otp/email_otp_plugin.dart';
+```
+
+## Full Example
 
 ```dart
 class _MyHomePageState extends State<MyHomePage> {

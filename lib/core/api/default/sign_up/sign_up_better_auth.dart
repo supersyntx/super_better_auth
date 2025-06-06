@@ -10,7 +10,11 @@ part 'sign_up_better_auth.g.dart';
 
 @RestApi(callAdapter: BetterAuthCallAdapter)
 abstract class SignUpBetterAuth {
-  factory SignUpBetterAuth(Dio dio, {String? baseUrl,ParseErrorLogger? errorLogger}) = _SignUpBetterAuth;
+  factory SignUpBetterAuth(
+    Dio dio, {
+    String? baseUrl,
+    ParseErrorLogger? errorLogger,
+  }) = _SignUpBetterAuth;
 
   @POST('/sign-up/email')
   Future<Result<SignUpResponse>> email({

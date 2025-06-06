@@ -11,7 +11,7 @@ abstract class SignInEmailResponse with _$SignInEmailResponse {
     required String token,
     String? url,
     required User user,
-}) = _SignInEmailResponse;
+  }) = _SignInEmailResponse;
   factory SignInEmailResponse.fromJson(Map<String, dynamic> json) =>
       _$SignInEmailResponseFromJson(json);
 }

@@ -5,9 +5,7 @@ part 'phone_body.g.dart';
 
 @freezed
 abstract class PhoneBody with _$PhoneBody {
-  const factory PhoneBody({
-    required String phoneNumber
-}) = _PhoneBody;
+  const factory PhoneBody({required String phoneNumber}) = _PhoneBody;
 
   factory PhoneBody.fromJson(Map<String, dynamic> json) =>
       _$PhoneBodyFromJson(json);

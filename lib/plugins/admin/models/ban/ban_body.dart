@@ -9,7 +9,7 @@ abstract class BanBody with _$BanBody {
     required String userId,
     @Default("") String banReason,
     String? banExpiresIn,
-}) = _BanBody;
+  }) = _BanBody;
 
   factory BanBody.fromJson(Map<String, dynamic> json) =>
       _$BanBodyFromJson(json);

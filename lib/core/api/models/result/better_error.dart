@@ -8,7 +8,8 @@ abstract class BetterError with _$BetterError {
   const factory BetterError({
     @Default("ERROR") String code,
     required String message,
-}) = _BetterError;
+    required String? stack,
+  }) = _BetterError;
 
   factory BetterError.fromJson(Map<String, dynamic> json) =>
       _$BetterErrorFromJson(json);

@@ -21,7 +21,11 @@ part 'better_auth_client.g.dart';
 
 @RestApi(callAdapter: BetterAuthCallAdapter)
 abstract class BetterAuthClient {
-  factory BetterAuthClient(Dio dio, {String? baseUrl,ParseErrorLogger? errorLogger}) = _BetterAuthClient;
+  factory BetterAuthClient(
+    Dio dio, {
+    String? baseUrl,
+    ParseErrorLogger? errorLogger,
+  }) = _BetterAuthClient;
 
   // @POST('/sign-in/social')
   // Future<Result<SignInSocialResponse>> signInWithSocial({

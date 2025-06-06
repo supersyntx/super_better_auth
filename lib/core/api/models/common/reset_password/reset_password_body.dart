@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'reset_password_body.freezed.dart';
 part 'reset_password_body.g.dart';
 
-
 @freezed
 abstract class ResetPasswordBody with _$ResetPasswordBody {
   const factory ResetPasswordBody({

@@ -27,6 +27,7 @@ export 'core/api/models/common/reset_password/reset_password_body.dart';
 export 'core/api/models/common/send_verification_email/verification_email_body.dart';
 export 'core/api/models/common/sign_out/sign_out_response.dart';
 export 'core/api/models/common/verify_email/verify_email_response.dart';
+
 // API BODY AND RESPONSE
 export 'core/api/models/result/result.dart';
 export 'core/api/models/session/session_response.dart';

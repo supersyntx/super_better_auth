@@ -9,7 +9,7 @@ abstract class ChangePasswordBody with _$ChangePasswordBody {
     required String newPassword,
     required String currentPassword,
     String? revokeOtherSessions,
-}) = _ChangePasswordBody;
+  }) = _ChangePasswordBody;
   factory ChangePasswordBody.fromJson(Map<String, dynamic> json) =>
       _$ChangePasswordBodyFromJson(json);
 }

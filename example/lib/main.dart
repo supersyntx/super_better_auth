@@ -89,7 +89,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   child: Text("GetSession"),
                 ),
-
                 FilledButton(
                   onPressed: () {
                     client.signOut();
@@ -98,20 +97,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 FilledButton(
                   onPressed: () async {
-                    final res = await client.signIn.social(body: SignInSocialBody(
+                    final res = await client.signIn.social(
+                      body: SignInSocialBody(
                         provider: 'github',
                         disableRedirect: true,
-                    callbackURL: 'betterapp://oauth-callback'
-                    ));
-                    if(res is Success<SignInSocialResponse>){
+                        callbackURL: 'betterapp://oauth-callback',
+                      ),
+                    );
+                    if (res is Success<SignInSocialResponse>) {
                       logger.i(res.data.url);
                       final uri = Uri.parse(res.data.url);
-                      final newUri = uri.replace(queryParameters: {
-                        ...uri.queryParameters,
-                        "redirect_uri": 'betterapp://oauth-callback'
-                      });
+                      final newUri = uri.replace(
+                        queryParameters: {
+                          ...uri.queryParameters,
+                          "redirect_uri": 'betterapp://oauth-callback',
+                        },
+                      );
                       final result = await FlutterWebAuth2.authenticate(
-                        url:newUri.toString(),
+                        url: newUri.toString(),
                         callbackUrlScheme: 'betterapp',
                       );
                       logger.i(result);
@@ -121,13 +124,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       if (code != null) {
                         final callbackRes = await client.social.callback(
                           provider: 'github',
-                          body: CallbackBody(code: code, state:state),
+                          body: CallbackBody(code: code, state: state),
                         );
                         logger.i(callbackRes);
                       }
                     }
                     return;
-
                     // OAuth2Client ghClient = GitHubOAuth2Client(
                     //   redirectUri: "betterapp://oauth-callback",
                     //   customUriScheme: 'betterapp',

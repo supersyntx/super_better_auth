@@ -9,7 +9,7 @@ abstract class DeleteUserBody with _$DeleteUserBody {
     String? callbackURL,
     String? password,
     String? token,
-}) = _DeleteUserBody;
+  }) = _DeleteUserBody;
   factory DeleteUserBody.fromJson(Map<String, dynamic> json) =>
       _$DeleteUserBodyFromJson(json);
 }

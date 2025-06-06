@@ -19,7 +19,7 @@ abstract class Account with _$Account {
     String? password,
     @Default(null) DateTime? createdAt,
     @Default(null) DateTime? updatedAt,
-}) = _Account;
+  }) = _Account;
 
   factory Account.fromJson(Map<String, dynamic> json) =>
       _$AccountFromJson(json);

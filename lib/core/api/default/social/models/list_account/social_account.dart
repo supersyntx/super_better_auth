@@ -10,7 +10,7 @@ abstract class SocialAccount with _$SocialAccount {
     required String provider,
     @Default(null) DateTime? createdAt,
     @Default(null) DateTime? updatedAt,
-}) = _SocialAccount;
+  }) = _SocialAccount;
 
   factory SocialAccount.fromJson(Map<String, dynamic> json) =>
       _$SocialAccountFromJson(json);

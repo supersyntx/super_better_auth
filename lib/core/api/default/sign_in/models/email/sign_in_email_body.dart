@@ -10,7 +10,7 @@ abstract class SignInEmailBody with _$SignInEmailBody {
     required String password,
     String? callbackURL,
     String? rememberMe,
-}) = _SignInEmailBody;
+  }) = _SignInEmailBody;
 
   factory SignInEmailBody.fromJson(Map<String, dynamic> json) =>
       _$SignInEmailBodyFromJson(json);

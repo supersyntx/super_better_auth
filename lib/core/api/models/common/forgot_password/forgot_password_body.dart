@@ -8,7 +8,7 @@ abstract class ForgotPasswordBody with _$ForgotPasswordBody {
   const factory ForgotPasswordBody({
     required String email,
     String? redirectTo,
-}) = _ForgotPasswordBody;
+  }) = _ForgotPasswordBody;
 
   factory ForgotPasswordBody.fromJson(Map<String, dynamic> json) =>
       _$ForgotPasswordBodyFromJson(json);

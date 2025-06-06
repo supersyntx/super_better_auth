@@ -58,10 +58,9 @@ class FlutterBetterAuth {
 
   static BetterAuthClient get client {
     assert(
-    _initialized,
-    'FlutterBetterAuth not initialized. Call initialize() first.',
+      _initialized,
+      'FlutterBetterAuth not initialized. Call initialize() first.',
     );
     return _instance._client;
   }
-
 }

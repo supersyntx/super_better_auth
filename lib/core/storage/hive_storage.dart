@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../utils/logger.dart';
 import 'storage.dart';
 
 class HiveStorage implements StorageInterface {
@@ -31,7 +30,6 @@ class HiveStorage implements StorageInterface {
               },
             )
             .toList();
-    logger.i(list.toString());
     await _box.put(url, list);
   }
 

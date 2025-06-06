@@ -8,7 +8,7 @@ abstract class SetUserPasswordBody with _$SetUserPasswordBody {
   const factory SetUserPasswordBody({
     required String newPassword,
     required String userId,
-}) = _SetUserPasswordBody;
+  }) = _SetUserPasswordBody;
 
   factory SetUserPasswordBody.fromJson(Map<String, dynamic> json) =>
       _$SetUserPasswordBodyFromJson(json);

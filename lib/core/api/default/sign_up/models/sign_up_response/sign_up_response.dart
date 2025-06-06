@@ -8,11 +8,11 @@ part 'sign_up_response.g.dart';
 
 @freezed
 abstract class SignUpResponse with _$SignUpResponse {
-  const factory SignUpResponse({String? token,
+  const factory SignUpResponse({
+    String? token,
     required User user,
-    @Default(true) bool status
-  }) =
-      _SignUpResponse;
+    @Default(true) bool status,
+  }) = _SignUpResponse;
 
   factory SignUpResponse.fromJson(Map<String, dynamic> json) =>
       _$SignUpResponseFromJson(json);
