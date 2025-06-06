@@ -29,7 +29,7 @@ dependencies:
 - ✅ Anonymous authentication
 - ✅ Admin
 - ✅ Email OTP
-- ⬜ JWT
+- ✅ JWT
 - ⬜ Two-Factor Authentication
 - ⬜ API Key
 - ⬜ Organization
@@ -84,7 +84,6 @@ BetterAuthConsumer(
 Or directly via:
 
 ```dart
-
 final client = FlutterBetterAuth.client;
 ```
 
@@ -96,14 +95,14 @@ To use available plugin, you can import them like:
 import 'package:flutter_better_auth/plugins/admin/admin_plugin.dart';
 import 'package:flutter_better_auth/plugins/phone/phone_plugin.dart';
 import 'package:flutter_better_auth/plugins/email_otp/email_otp_plugin.dart';
+import 'package:flutter_better_auth/plugins/jwt/jwt_plugin.dart';
 ```
 And now, it will be available in client. For example: 
 ```dart
-
 client.phone // to access phone plugin 
 client.admin // to access admin plugin 
-client.emailOtp // to access email_otp plugin 
-
+client.emailOtp // to access email_otp plugin
+client.jwt // to access jwt plugin
 ```
 ## Full Example
 

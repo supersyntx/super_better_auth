@@ -27,9 +27,12 @@
 
 - Update readme for plugin example
 
+### 0.0.6
+
+- Add JWT support
+
 ### Upcoming
 
-- JWT support
 - Two-Factor Authentication
 - PassKey, One-Tap
 - API Key and Organization support
