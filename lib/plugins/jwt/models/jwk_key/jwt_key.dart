@@ -15,7 +15,7 @@ abstract class JwtKey with _$JwtKey {
     String? crv,
     String? x,
     String? y,
-}) = _JwtKey;
+  }) = _JwtKey;
 
   factory JwtKey.fromJson(Map<String, dynamic> json) => _$JwtKeyFromJson(json);
 }
