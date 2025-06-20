@@ -51,7 +51,7 @@ abstract class BetterAuthClient {
   //   @Body(nullToAbsent: true) required SignInEmailBody body,
   // });
 
-  @POST('/forgot-password')
+  @POST('/forget-password')
   Future<Result<StatusResponse>> forgotPassword({
     @Body(nullToAbsent: true) required ForgotPasswordBody body,
   });
