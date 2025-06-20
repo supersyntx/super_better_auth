@@ -129,12 +129,12 @@ class _SignInBetterAuth implements SignInBetterAuth {
     );
   }
 
-  Future<HttpResponse<SessionResponse>> _anonymous() async {
+  Future<HttpResponse<SignUpResponse>> _anonymous() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<Result<SessionResponse>>(
+    final _options = _setStreamType<Result<SignUpResponse>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -145,9 +145,9 @@ class _SignInBetterAuth implements SignInBetterAuth {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late SessionResponse _value;
+    late SignUpResponse _value;
     try {
-      _value = SessionResponse.fromJson(_result.data!);
+      _value = SignUpResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -157,18 +157,18 @@ class _SignInBetterAuth implements SignInBetterAuth {
   }
 
   @override
-  Future<Result<SessionResponse>> anonymous() {
-    return BetterAuthCallAdapter<SessionResponse>().adapt(() => _anonymous());
+  Future<Result<SignUpResponse>> anonymous() {
+    return BetterAuthCallAdapter<SignUpResponse>().adapt(() => _anonymous());
   }
 
-  Future<HttpResponse<SessionResponse>> _phoneNumber({
+  Future<HttpResponse<SignUpResponse>> _phoneNumber({
     required SignInPhoneBody body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = body;
-    final _options = _setStreamType<Result<SessionResponse>>(
+    final _options = _setStreamType<Result<SignUpResponse>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -179,9 +179,9 @@ class _SignInBetterAuth implements SignInBetterAuth {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late SessionResponse _value;
+    late SignUpResponse _value;
     try {
-      _value = SessionResponse.fromJson(_result.data!);
+      _value = SignUpResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -191,8 +191,8 @@ class _SignInBetterAuth implements SignInBetterAuth {
   }
 
   @override
-  Future<Result<SessionResponse>> phoneNumber({required SignInPhoneBody body}) {
-    return BetterAuthCallAdapter<SessionResponse>().adapt(
+  Future<Result<SignUpResponse>> phoneNumber({required SignInPhoneBody body}) {
+    return BetterAuthCallAdapter<SignUpResponse>().adapt(
       () => _phoneNumber(body: body),
     );
   }

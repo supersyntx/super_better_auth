@@ -17,14 +17,14 @@ class _PhoneBetterAuth implements PhoneBetterAuth {
 
   final ParseErrorLogger? errorLogger;
 
-  Future<HttpResponse<SessionResponse>> _signIn({
+  Future<HttpResponse<SignUpResponse>> _signIn({
     required SignInPhoneBody body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = body;
-    final _options = _setStreamType<Result<SessionResponse>>(
+    final _options = _setStreamType<Result<SignUpResponse>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -35,9 +35,9 @@ class _PhoneBetterAuth implements PhoneBetterAuth {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late SessionResponse _value;
+    late SignUpResponse _value;
     try {
-      _value = SessionResponse.fromJson(_result.data!);
+      _value = SignUpResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -47,18 +47,20 @@ class _PhoneBetterAuth implements PhoneBetterAuth {
   }
 
   @override
-  Future<Result<SessionResponse>> signIn({required SignInPhoneBody body}) {
-    return BetterAuthCallAdapter<SessionResponse>().adapt(
+  Future<Result<SignUpResponse>> signIn({required SignInPhoneBody body}) {
+    return BetterAuthCallAdapter<SignUpResponse>().adapt(
       () => _signIn(body: body),
     );
   }
 
-  Future<HttpResponse<BetterError>> _sendOtp({required PhoneBody body}) async {
+  Future<HttpResponse<SendOTPResponse>> _sendOtp({
+    required PhoneBody body,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = body;
-    final _options = _setStreamType<Result<BetterError>>(
+    final _options = _setStreamType<Result<SendOTPResponse>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -69,9 +71,9 @@ class _PhoneBetterAuth implements PhoneBetterAuth {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late BetterError _value;
+    late SendOTPResponse _value;
     try {
-      _value = BetterError.fromJson(_result.data!);
+      _value = SendOTPResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -81,8 +83,8 @@ class _PhoneBetterAuth implements PhoneBetterAuth {
   }
 
   @override
-  Future<Result<BetterError>> sendOtp({required PhoneBody body}) {
-    return BetterAuthCallAdapter<BetterError>().adapt(
+  Future<Result<SendOTPResponse>> sendOtp({required PhoneBody body}) {
+    return BetterAuthCallAdapter<SendOTPResponse>().adapt(
       () => _sendOtp(body: body),
     );
   }
