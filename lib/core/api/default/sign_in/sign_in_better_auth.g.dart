@@ -161,42 +161,6 @@ class _SignInBetterAuth implements SignInBetterAuth {
     return BetterAuthCallAdapter<SignUpResponse>().adapt(() => _anonymous());
   }
 
-  Future<HttpResponse<SignUpResponse>> _phoneNumber({
-    required SignInPhoneBody body,
-  }) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = body;
-    final _options = _setStreamType<Result<SignUpResponse>>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
-          .compose(
-            _dio.options,
-            '/sign-in/phone-number',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late SignUpResponse _value;
-    try {
-      _value = SignUpResponse.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
-    final httpResponse = HttpResponse(_value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<Result<SignUpResponse>> phoneNumber({required SignInPhoneBody body}) {
-    return BetterAuthCallAdapter<SignUpResponse>().adapt(
-      () => _phoneNumber(body: body),
-    );
-  }
-
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

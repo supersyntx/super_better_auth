@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
-import '../../../../plugins/phone/models/sign_in_phone_body.dart';
 import '../../adapter.dart';
 import '../../models/result/result.dart';
 import 'models/email/sign_in_email_body.dart';
@@ -38,9 +37,4 @@ abstract class SignInBetterAuth {
 
   @POST('/sign-in/anonymous')
   Future<Result<SignUpResponse>> anonymous();
-
-  @POST('/sign-in/phone-number')
-  Future<Result<SignUpResponse>> phoneNumber({
-    @Body(nullToAbsent: true) required SignInPhoneBody body,
-  });
 }
