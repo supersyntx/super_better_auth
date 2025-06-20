@@ -18,7 +18,7 @@ class _EmailOtpBetterAuth implements EmailOtpBetterAuth {
   final ParseErrorLogger? errorLogger;
 
   Future<HttpResponse<SuccessResponse>> _sendVerification({
-    required OtpBody body,
+    required EmailOtpBody body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -47,7 +47,9 @@ class _EmailOtpBetterAuth implements EmailOtpBetterAuth {
   }
 
   @override
-  Future<Result<SuccessResponse>> sendVerification({required OtpBody body}) {
+  Future<Result<SuccessResponse>> sendVerification({
+    required EmailOtpBody body,
+  }) {
     return BetterAuthCallAdapter<SuccessResponse>().adapt(
       () => _sendVerification(body: body),
     );

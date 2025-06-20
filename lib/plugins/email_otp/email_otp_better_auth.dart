@@ -8,6 +8,7 @@ import '../../core/api/models/result/success_response.dart';
 import 'models/reset_password/password_otp.dart';
 import 'models/verification_otp/otp_body.dart';
 import 'models/verify_otp/verify_otp_body.dart';
+import 'models/verification_otp/email_otp_body.dart';
 
 part 'email_otp_better_auth.g.dart';
 
@@ -21,7 +22,7 @@ abstract class EmailOtpBetterAuth {
 
   @POST('/email-otp/send-verification-otp')
   Future<Result<SuccessResponse>> sendVerification({
-    @Body() required OtpBody body,
+    @Body() required EmailOtpBody body,
   });
 
   @POST('/email-otp/verify-email')
