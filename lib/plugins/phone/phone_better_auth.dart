@@ -36,6 +36,11 @@ abstract class PhoneBetterAuth {
     @Body(nullToAbsent: true) required VerifyPhoneBody body,
   });
 
+  @POST('/phone-number/request-password-reset')
+  Future<Result<StatusResponse>> requestPasswordResetOTP({
+    @Body(nullToAbsent: true) required PhoneBody body,
+  });
+
   @POST('/phone-number/reset-password')
   Future<Result<StatusResponse>> restPassword({
     @Body(nullToAbsent: true) required ResetPhonePasswordBody body,

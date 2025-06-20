@@ -4,7 +4,6 @@ import 'package:retrofit/retrofit.dart';
 import '../../core/api/adapter.dart';
 import '../../core/api/default/sign_up/models/sign_up_response/sign_up_response.dart';
 import '../../core/api/models/result/result.dart';
-import '../../core/api/models/result/status_response.dart';
 import '../../core/api/models/result/success_response.dart';
 import 'models/reset_password/password_otp.dart';
 import 'models/verification_otp/otp_body.dart';
