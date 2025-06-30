@@ -31,6 +31,10 @@
 
 - Add JWT support
 
+### 0.0.7
+
+- Fix: update api response types to use correct models from [https://github.com/karuppusamy-d](Karuppusamy)
+
 ### Upcoming
 
 - Two-Factor Authentication
