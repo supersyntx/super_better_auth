@@ -50,6 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 8,
               children: <Widget>[
                 FilledButton(
                   onPressed: () async {
@@ -85,6 +86,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 FilledButton(
                   onPressed: () async {
+                    final res2 = await client.signIn.social(
+                      provider: 'google',
+                      disableRedirect: true,
+                      idToken: SocialIdTokenBody(token: "test_token"),
+                    );
+                    return;
                     final res = await client.signIn.social(
                       provider: 'github',
                       disableRedirect: true,

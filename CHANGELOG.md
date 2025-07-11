@@ -55,6 +55,10 @@
     password: "12345678",
   );
   ```
+  
+### 0.0.9
+
+- Fix body serialization 
 
 ### Upcoming
 

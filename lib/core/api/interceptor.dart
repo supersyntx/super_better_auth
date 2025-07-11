@@ -23,6 +23,12 @@ class RemoveNullsInterceptor extends Interceptor {
             return entry.value != null;
           })
           .map((e) {
+            if (_canCallToJson(e.value)) {
+              return MapEntry(
+                e.key,
+                _removeNullsFromMap(e.value.toJson() as Map<String, dynamic>),
+              );
+            }
             if (e.value is Map) {
               return MapEntry(e.key, _removeNullsFromMap(e.value));
             }
