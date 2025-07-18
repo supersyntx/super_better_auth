@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter_better_auth/core/api/models/result/result_extension.dart';
-import 'package:flutter_better_auth/core/utils/logger.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 
 import '../../../flutter_better_auth.dart';
@@ -27,7 +26,7 @@ extension SignInSocial on SignInBetterAuth {
     final res = await socialAuth(
       provider: provider,
       callbackURL:
-          "${callbackUrlScheme != null ? "$callbackUrlScheme://" : ""}$callbackURL",
+          "${callbackUrlScheme != null ? "$callbackUrlScheme://" : ""}${callbackURL ?? 'auth-callback'}",
       newUserCallbackURL: newUserCallbackURL,
       errorCallbackURL: errorCallbackURL,
       disableRedirect: disableRedirect,
@@ -39,13 +38,11 @@ extension SignInSocial on SignInBetterAuth {
     if (idToken != null) {
       return res;
     }
-    logger.i(res);
     if (res.data != null && callbackUrlScheme != null) {
       final result = await FlutterWebAuth2.authenticate(
         url: res.data!.url,
         callbackUrlScheme: callbackUrlScheme,
       );
-      logger.i(result);
       final url = Uri.tryParse(result);
       final cookie = url?.queryParameters['cookie'];
       if (cookie != null && cookie.isNotEmpty) {

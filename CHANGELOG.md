@@ -64,6 +64,10 @@
 
 - Add `flutter_auth_web_2` for social auth.
 
+### 0.1.1
+
+- Remove log.
+
 ### Upcoming
 
 - Two-Factor Authentication
