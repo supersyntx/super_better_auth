@@ -27,18 +27,22 @@ extension SignInSocialExtension on SignInBetterAuth {
     final res = await socialAuth(
       provider: provider,
       callbackURL:
-          callbackURL != null
+          idToken != null
+              ? callbackURL
+              : callbackURL != null
               ? !kIsWeb
                   ? Uri.parse(
                     callbackURL,
                   ).replace(scheme: callbackUrlScheme).toString()
                   : callbackURL
-              : !kIsWeb
+              : !kIsWeb && idToken != null
               ? "${callbackUrlScheme ?? 'https'}://auth-callback"
               : null,
 
       newUserCallbackURL:
-          newUserCallbackURL != null
+          idToken != null
+              ? newUserCallbackURL
+              : newUserCallbackURL != null
               ? !kIsWeb
                   ? Uri.parse(
                     newUserCallbackURL,
@@ -47,7 +51,9 @@ extension SignInSocialExtension on SignInBetterAuth {
               : null,
 
       errorCallbackURL:
-          errorCallbackURL != null
+          idToken != null
+              ? errorCallbackURL
+              : errorCallbackURL != null
               ? !kIsWeb
                   ? Uri.parse(
                     errorCallbackURL,

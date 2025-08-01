@@ -5,7 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterBetterAuth.initialize(
-    url: 'https://84683aa48a8a.ngrok-free.app/api/auth',
+    url: 'https://37ad8d1e3e23.ngrok-free.app/api/auth',
   );
   await dotenv.load();
   runApp(const MyApp());
