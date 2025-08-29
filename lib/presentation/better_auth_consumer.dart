@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_better_auth/core/api/better_auth_client.dart';
-import 'package:flutter_better_auth/presentation/better_auth_inherit.dart';
+import 'package:super_better_auth/core/api/better_auth_client.dart';
+import 'package:super_better_auth/presentation/better_auth_inherit.dart';
 
 class BetterAuthConsumer extends StatefulWidget {
-  final Widget Function(BuildContext context, BetterAuthClient client) builder;
+  final Widget Function(BuildContext context, SuperBetterAuthClient client)
+  builder;
 
   const BetterAuthConsumer({super.key, required this.builder});
 

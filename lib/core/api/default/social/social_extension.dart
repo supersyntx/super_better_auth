@@ -1,10 +1,10 @@
-import '../../../flutter_better_auth.dart';
+import '../../../super_better_auth.dart';
 import '../../better_auth_client.dart';
 import 'social_better_auth.dart';
 
-extension SocialBetterAuthExtension on BetterAuthClient {
+extension SocialBetterAuthExtension on SuperBetterAuthClient {
   SocialBetterAuth get social => SocialBetterAuth(
-    FlutterBetterAuth.dioClient,
-    baseUrl: FlutterBetterAuth.baseUrl,
+    SuperBetterAuth.dioClient,
+    baseUrl: SuperBetterAuth.baseUrl,
   );
 }

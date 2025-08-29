@@ -20,7 +20,8 @@ export 'core/api/models/common/verify_email/verify_email_response.dart';
 export 'core/api/models/result/result.dart';
 export 'core/api/models/result/result_extension.dart';
 export 'core/api/models/session/session_response.dart';
-export 'core/flutter_better_auth.dart';
+export 'core/api/cookie_extension.dart';
+export 'core/super_better_auth.dart';
 export 'core/models/account/account.dart';
 export 'core/models/session/session.dart';
 // DEFAULT MODEL
@@ -28,5 +29,10 @@ export 'core/models/session/session.dart';
 export 'core/models/user/user.dart';
 export 'core/models/verification/verification.dart';
 export 'plugins/phone/models/sign_in_phone_body.dart';
+
+// ORGANIZATION PLUGIN
+export 'plugins/organization/organization.dart';
+
+// PRESENTATION
 export 'presentation/better_auth_consumer.dart';
 export 'presentation/better_auth_provider.dart';

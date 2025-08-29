@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_better_auth/core/models/session/session.dart';
+import 'package:super_better_auth/core/models/session/session.dart';
 import 'package:retrofit/retrofit.dart';
 
 import 'adapter.dart';
@@ -14,12 +14,12 @@ import 'models/session/session_response.dart';
 part 'better_auth_client.g.dart';
 
 @RestApi(callAdapter: BetterAuthCallAdapter)
-abstract class BetterAuthClient {
-  factory BetterAuthClient(
+abstract class SuperBetterAuthClient {
+  factory SuperBetterAuthClient(
     Dio dio, {
     String? baseUrl,
     ParseErrorLogger? errorLogger,
-  }) = _BetterAuthClient;
+  }) = _SuperBetterAuthClient;
 
   @GET('/get-session')
   Future<Result<SessionResponse>> getSession();

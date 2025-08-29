@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter_better_auth/core/api/models/result/result_extension.dart';
+import 'package:super_better_auth/core/api/models/result/result_extension.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 
-import '../../../flutter_better_auth.dart';
+import '../../../super_better_auth.dart';
 import '../../better_auth_client.dart';
 import '../../models/result/result.dart';
 import 'models/social/sign_in_social_response.dart';
@@ -85,8 +85,8 @@ extension SignInSocialExtension on SignInBetterAuth {
                 .map((str) => Cookie.fromSetCookieValue(str))
                 .toList();
 
-        await FlutterBetterAuth.storage?.saveCookies(
-          Uri.parse(FlutterBetterAuth.baseUrl).host,
+        await SuperBetterAuth.storage?.saveCookies(
+          Uri.parse(SuperBetterAuth.baseUrl).host,
           cookies,
         );
       }
@@ -95,9 +95,9 @@ extension SignInSocialExtension on SignInBetterAuth {
   }
 }
 
-extension SignInBetterAuthExtension on BetterAuthClient {
+extension SignInBetterAuthExtension on SuperBetterAuthClient {
   SignInBetterAuth get signIn => SignInBetterAuth(
-    FlutterBetterAuth.dioClient,
-    baseUrl: FlutterBetterAuth.baseUrl,
+    SuperBetterAuth.dioClient,
+    baseUrl: SuperBetterAuth.baseUrl,
   );
 }

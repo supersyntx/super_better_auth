@@ -1,12 +1,14 @@
+import 'dart:developer';
+
+import 'package:example/organization_example.dart';
+import 'package:example/cookie_example.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_better_auth/flutter_better_auth.dart';
+import 'package:super_better_auth/super_better_auth.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await FlutterBetterAuth.initialize(
-    url: 'https://37ad8d1e3e23.ngrok-free.app/api/auth',
-  );
+  await SuperBetterAuth.initialize(url: 'http://localhost:3000/api/auth');
   await dotenv.load();
   runApp(const MyApp());
 }
@@ -79,6 +81,32 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text("GetSession"),
                 ),
                 FilledButton(
+                  onPressed: () async {
+                    // Demonstrate getCookie functionality
+                    try {
+                      // Get all cookies
+                      final allCookies = await client.getCookies();
+                      debugPrint("All cookies: $allCookies");
+                      
+                      // Get auth-related cookies
+                      final authCookies = await client.getAuthCookies();
+                      debugPrint("Auth cookies: $authCookies");
+                      
+                      // Get a specific cookie
+                      final sessionCookie = await client.getCookie('better-auth.session_token');
+                      debugPrint("Session cookie: $sessionCookie");
+                      
+                      // Check if a cookie exists
+                      final hasSession = await client.hasCookie('better-auth.session_token');
+                      debugPrint("Has session cookie: $hasSession");
+                      
+                    } catch (e) {
+                      debugPrint("Error getting cookies: $e");
+                    }
+                  },
+                  child: Text("GetCookies"),
+                ),
+                FilledButton(
                   onPressed: () {
                     client.signOut();
                   },
@@ -109,6 +137,28 @@ class _MyHomePageState extends State<MyHomePage> {
                     }
                   },
                   child: Text("SignUp"),
+                ),
+                FilledButton(
+                  onPressed: () async {
+                    final result = await client.getSession();
+                    log(result.data.toString());
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const OrganizationExample(),
+                      ),
+                    );
+                  },
+                  child: Text("Organization"),
+                ),
+                FilledButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const CookieExample(),
+                      ),
+                    );
+                  },
+                  child: Text("Cookie Management"),
                 ),
               ],
             ),

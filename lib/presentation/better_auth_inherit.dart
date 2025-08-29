@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_better_auth/core/api/better_auth_client.dart';
+import 'package:super_better_auth/core/api/better_auth_client.dart';
 
 class BetterAuthInherit extends InheritedWidget {
-  final BetterAuthClient client;
+  final SuperBetterAuthClient client;
 
   const BetterAuthInherit({
     super.key,
@@ -10,10 +10,10 @@ class BetterAuthInherit extends InheritedWidget {
     required super.child,
   });
 
-  static BetterAuthClient of(BuildContext context) {
+  static SuperBetterAuthClient of(BuildContext context) {
     final provider =
         context.dependOnInheritedWidgetOfExactType<BetterAuthInherit>();
-    assert(provider != null, 'BetterAuthClient not found in context');
+    assert(provider != null, 'SuperBetterAuthClient not found in context');
     return provider!.client;
   }
 

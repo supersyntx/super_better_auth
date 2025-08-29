@@ -6,17 +6,17 @@ with [Better-Auth](https://www.better-auth.com).
 
 ## Getting Started
 
-Add `flutter_better_auth` to your project dependencies:
+Add `super_better_auth` to your project dependencies:
 
 ```sh
-flutter pub add flutter_better_auth
+flutter pub add super_better_auth
 ```
 
 Or manually add it to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-   flutter_better_auth: <latest_version>
+   super_better_auth: <latest_version>
 ```
 
 ## Features
@@ -41,11 +41,11 @@ Import the package in your `main.dart`:
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:flutter_better_auth/flutter_better_auth.dart';
+import 'package:super_better_auth/super_better_auth.dart';
 
 void main() async {
    WidgetsFlutterBinding.ensureInitialized();
-   await FlutterBetterAuth.initialize(url: 'api_url');
+   await SuperBetterAuth.initialize(url: 'api_url');
    runApp(const MyApp());
 }
 ```
@@ -84,7 +84,7 @@ BetterAuthConsumer(
 Or directly via:
 
 ```dart
-final client = FlutterBetterAuth.client;
+final client = SuperBetterAuth.client;
 ```
 
 ## Using plugins
@@ -92,10 +92,10 @@ final client = FlutterBetterAuth.client;
 To use available plugin, you can import them like:
 
 ```dart
-import 'package:flutter_better_auth/plugins/admin/admin_plugin.dart';
-import 'package:flutter_better_auth/plugins/phone/phone_plugin.dart';
-import 'package:flutter_better_auth/plugins/email_otp/email_otp_plugin.dart';
-import 'package:flutter_better_auth/plugins/jwt/jwt_plugin.dart';
+import 'package:super_better_auth/plugins/admin/admin_plugin.dart';
+import 'package:super_better_auth/plugins/phone/phone_plugin.dart';
+import 'package:super_better_auth/plugins/email_otp/email_otp_plugin.dart';
+import 'package:super_better_auth/plugins/jwt/jwt_plugin.dart';
 ```
 
 And now, it will be available in client. For example:
@@ -111,11 +111,11 @@ client.jwt // to access jwt plugin
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:flutter_better_auth/flutter_better_auth.dart';
+import 'package:super_better_auth/super_better_auth.dart';
 
 void main() async {
    WidgetsFlutterBinding.ensureInitialized();
-   await FlutterBetterAuth.initialize(
+   await SuperBetterAuth.initialize(
       url: 'your_base_url/api/auth',
    );
    runApp(const MyApp());

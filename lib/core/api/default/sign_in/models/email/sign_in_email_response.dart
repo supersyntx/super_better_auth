@@ -1,4 +1,4 @@
-import 'package:flutter_better_auth/core/models/user/user.dart';
+import 'package:super_better_auth/core/models/user/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'sign_in_email_response.freezed.dart';
