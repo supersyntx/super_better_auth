@@ -30,9 +30,9 @@ dependencies:
 - ✅ Admin
 - ✅ Email OTP
 - ✅ JWT
-- ⬜ Two-Factor Authentication
+- 🟠 Two-Factor Authentication
 - ⬜ API Key
-- ⬜ Organization
+- ✅ Organization
 - ⬜ One-time-token
 
 ## Usage
